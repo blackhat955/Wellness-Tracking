@@ -1,0 +1,49 @@
+/* footer.css */
+
+.footer {
+  background-color: #333;
+  color: white;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.footer-section {
+  flex: 1;
+  padding: 0 20px;
+}
+
+.footer h2 {
+  font-size: 1.5rem;
+}
+
+.footer p {
+  margin: 10px 0;
+}
+
+.footer input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 8px;
+}
+
+.footer button {
+  background-color: #f1356d;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.footer button:hover {
+  background-color: #d11a4c;
+}

@@ -1,0 +1,63 @@
+/* Card.css */
+
+.card-container {
+    min-width: 230px;
+    margin: 20px;
+    padding: 20px;
+    border: 2px solid #f0f0f0;
+    border-radius: 12px;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+    gap: 10px;
+  }
+  
+  .card-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .user-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto; /* Center the image horizontally */
+    display: block; /* Remove default inline display of images */
+    margin-bottom: 10px;
+    grid-row: 1;
+    grid-column: 1;
+  }
+  
+  .user-name {
+    margin-bottom: 5px;
+    grid-row: 2;
+    grid-column: 1;
+  }
+  
+  .user-details {
+    text-align: left;
+    grid-row: 3;
+    grid-column: 1;
+  }
+  
+  /* Media query for small screens */
+  @media (max-width: 600px) {
+    .card-container {
+      width: 90%;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto auto auto;
+    }
+  }
+  
+  /* Media query for larger screens */
+  @media (min-width: 601px) {
+    .card-container {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+  }
+  

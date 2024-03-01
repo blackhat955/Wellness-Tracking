@@ -1,0 +1,65 @@
+/* Navbar.css */
+
+.nav{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    background-color: #333;
+  }
+
+
+  
+  .select-options {
+    display: flex;
+    flex-direction:row;
+    gap: 15px;
+  }
+  
+  select {
+   
+    padding:15px;
+    padding-left: 40px;
+ 
+  }
+  
+  .search-bar {
+    display: flex;
+    gap: 10px;
+  }
+
+  
+  @media screen and (max-width: 768px) {
+    .search-bar {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+      }
+
+      button{
+        width: 20vw;
+       }
+    
+
+}
+
+
+ .nav #search{
+   width: 40vw;
+  }
+ .nav button{
+    width: 5vw;
+   }
+  
+  nav input {
+    padding: 15px;
+  }
+  
+ .nav button {
+    background-color: #f1356d !important;
+    color: #fff;
+    border: none;
+    cursor: pointer !important;
+  }
+  

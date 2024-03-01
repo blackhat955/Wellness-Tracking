@@ -1,0 +1,59 @@
+/* Navbar.css */
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 10px 20px;
+}
+
+.brand {
+  color: white;
+  font-size: 20px;
+}
+
+.menu {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+}
+
+.nav-item {
+  color: white;
+  cursor: pointer;
+}
+
+.search-box {
+  margin-left: auto;
+}
+
+.search-box input {
+  padding: 5px;
+}
+
+.burger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 3px 0;
+}
+
+.burger.active .bar:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.burger.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.active .bar:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+

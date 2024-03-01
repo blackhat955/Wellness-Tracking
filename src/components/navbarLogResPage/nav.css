@@ -1,0 +1,86 @@
+/* navbar.css */
+.navbar {
+    /* display: flex;
+    justify-content: space-between;
+    align-items: center; */
+    /* padding: 10px;
+    background-color: rgba(192, 47, 47, 0.267);
+    color: white; */
+}
+
+.navbar-brand {
+    display: flex;
+    /* align-items: center; */
+    margin: 5px;
+    margin-top: 5px;
+    color: tomato;
+}
+
+.navbar-brand img {
+    width: 10vw; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    padding: 0px; /* Add spacing between the logo and brand name */
+    display: block; /* Center the image */
+    margin: 0 auto; /* Center the image horizontally */
+}
+
+.navbar-brand span {
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+}
+
+.navbar-brand span:hover {
+    color: #f1356d;
+    transition-duration: 1ms;
+}
+
+.navbar-links {
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar-links span {
+    font-size: 1.6rem;
+    margin: 0 50px;
+    cursor: pointer;
+}
+
+.navbar-links span:hover {
+    color: #f1356d;
+    transition-duration: 1ms;
+}
+
+.burger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    transition: 0.4s;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #333;
+    }
+
+    .navbar-links.open {
+        display: flex;
+    }
+
+    .burger {
+        display: flex;
+    }
+}

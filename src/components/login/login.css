@@ -1,0 +1,80 @@
+/* register.css */
+
+.login-container {
+  max-width: 30vw;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 60px !important;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 10px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+
+button {
+  background-color: #15A3EF;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+ 
+
+}
+
+button:hover {
+  background-color:#3EB3F2 ;
+}
+
+.password-strength {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.password-strength.weak {
+  color: #ff5252;
+  font-weight: bold;
+}
+
+.password-strength.moderate {
+  color: #ff9800;
+  font-weight: bold;
+}
+
+.password-strength.strong {
+  color: #4caf50;
+  font-weight: bold;
+}
+.login-link {
+  margin-top: 20px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.login-link a {
+  color: #007bff;
+  text-decoration: none;
+}
