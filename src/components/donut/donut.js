@@ -1,10 +1,22 @@
 import React from 'react';
 import ApexCharts from 'react-apexcharts';
 
+// function to generate values for calories burned and resting calories
+function generatecalories(min, max) {
+    let numbers = [];
+
+    for (let i = 0; i < 2; i++) {
+        let number = Math.floor(Math.random() * (max - min + 1)) + min;
+        numbers.push(number);
+    }
+
+    return numbers;
+}
+
 const DoughNut = () => {
     const getChartOptions = () => {
         return {
-            series: [250, 150], // Update series to include both Calories Burned and Resting Calories
+            series: generatecalories(150, 300), // Series to include both Calories Burned and Resting Calories
             colors: ['#FF5733', '#FFC300'], // Update colors as needed
             chart: {
                 height: 320,
