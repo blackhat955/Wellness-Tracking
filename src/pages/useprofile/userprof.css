@@ -1,0 +1,29 @@
+.user{
+    margin-top: 30px;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(800px, 1fr)); /* Maximum of two elements per column */
+    gap: 2rem;
+    position: relative; /* Set the parent container to relative positioning */
+  }
+  
+  .classes-graph,
+  .doughnut {
+    grid-column: span 1; /* Spanning one column */
+  }
+  
+  .line-bar {
+    position: absolute;
+    left: 0;
+    width: calc(100% - 2rem); /* Take up 100% width of the parent container minus gap */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Ensuring full width for a single element */
+  .grid > :only-child {
+    grid-column: span 2; /* If there's only one element, it spans two columns */
+  }
+  
+  

@@ -1,6 +1,7 @@
 // RegistrationPage.jsx
 import React, { useState } from 'react';
 import './register.css';
+import { Link } from 'react-router-dom';
 
 const RegistrationPage = () => {
   const [formData, setFormData] = useState({
@@ -10,10 +11,10 @@ const RegistrationPage = () => {
     password: '',
     userType: 'professional', // Default to professional
   });
-  const handleLinkClick = () => {
-    // Navigate to another page
-    window.location.href = 'http://localhost:3000/login';
-  };
+  // const handleLinkClick = () => {
+  //   // Navigate to another page
+  //   window.location.href = 'http://localhost:3000/login';
+  // };
 
   const [passwordStrength, setPasswordStrength] = useState('');
 
@@ -124,7 +125,8 @@ const RegistrationPage = () => {
 
         <button type="submit">Register</button>
         <p className="login-link">
-          Already a user? <a href="/login" onClick={handleLinkClick}>Login</a>
+        {/* onClick={handleLinkClick} */}
+          Already a user? <Link to="/" >Login</Link>
         </p>
       </form>
     </div>

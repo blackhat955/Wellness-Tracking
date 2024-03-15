@@ -1,0 +1,72 @@
+.admin-page {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    text-align: center;
+  }
+  
+  .admin-page h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .admin-page select,
+  .admin-page input[type='text'] {
+    width: 100%; /* Subtract padding and border width */
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .admin-page textarea{
+    width: 90%; /* Subtract padding and border width */
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .admin-page select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23333" d="M7 9l5 5 5-5H7z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px top 50%;
+    background-size: 14px;
+  }
+  
+  .admin-page input[type='file'] {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .admin-page button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .admin-page button:hover {
+    background-color: #0056b3;
+  }
+  
+  .admin-page p {
+    margin-top: 10px;
+    color: #007b;
+    font-size: 16px;
+  }
+  
