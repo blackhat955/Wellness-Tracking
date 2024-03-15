@@ -1,6 +1,7 @@
-// Navbar.jsx
 import React, { useState } from 'react';
-import './navbar.css';
+import { Link } from 'react-router-dom';
+import './nav.css';
+import Brand from '../../assets/images/brand.png';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -12,20 +13,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-brand">
-        <img src="/path/to/your/logo.png" alt="Brand Logo" />
-        <span> WellNess360</span>
-      </div>
-
-      <div className={`navbar-links ${menuOpen ? 'open' : ''}`}>
-        <span>Profile</span>
-        <span>Professional</span>
-        <span>Work Plans</span>
-      </div>
-
-      <div className="burger" onClick={toggleMenu}>
-        <div className={`bar ${menuOpen ? 'open' : ''}`}></div>
-        <div className={`bar ${menuOpen ? 'open' : ''}`}></div>
-        <div className={`bar ${menuOpen ? 'open' : ''}`}></div>
+        <img src={Brand} alt="Brand Logo" />
       </div>
     </nav>
   );

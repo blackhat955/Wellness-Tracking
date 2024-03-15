@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/navbarLogResPage/nav';
-import Login from '../../components/login/login'
+import Reset from '../../components/resetpassword/reset'
 import Footer from '../../components/footer/footer';
 
-function LoginPage() {
+function ResetPage() {
 
   return (
     <div className="App">
       <Navbar/>
       <div className='log'>
-      <Login/>
+      <Reset/>
       </div>
      
      <Footer/>
@@ -17,4 +17,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default ResetPage;

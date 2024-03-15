@@ -1,9 +1,8 @@
 // RegistrationPage.jsx
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './login.css';
+import './reset.css';
 
-const Login = () => {
+const Reset = () => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -23,6 +22,15 @@ const Login = () => {
   };
 
   const handlePassword = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+    checkPasswordStrength(value);
+  };
+
+  const confirmhandlePassword = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -55,57 +63,45 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <h1>Sign In</h1>
+      <h1>Reset Password</h1>
       <form onSubmit={handleSubmit}>
        
-        <input
-          type="text"
-          id="userName"
-          name="userName"
-          placeholder='User Name'
-          value={formData.userName}
-          onChange={handleChange}
-          required
-        />
+    
 
         <input
           type="password"
           id="password"
           name="password"
-          placeholder='Password'
+          placeholder='password'
           value={formData.password}
           onChange={handlePassword}
           pattern="^(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&*(),.?:{}|<>]).{8,}$"
           title="Password must be at least 8 characters long and contain at least one number, one letter, and one special character."
           required
         />
+         <input
+          type=" Password"
+          id="password"
+          name="password"
+          placeholder='confirm password'
+          value={formData.password}
+          onChange={confirmhandlePassword}
+          pattern="^(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&*(),.?:{}|<>]).{8,}$"
+          title="Password must be at least 8 characters long and contain at least one number, one letter, and one special character."
+          required
+        />
 
-        <select
-          id="userType"
-          name="userType"
-          value={formData.userType}
-          onChange={handleChange}
-        >
-          <option value="professional">Professional</option>
-          <option value="customer">Customer</option>
-        </select>
         {passwordStrength && (
           <p className={`password-strength ${passwordStrength.toLowerCase()}`}>
             Password Strength: {passwordStrength}
           </p>
         )}
 
-        <button type="submit">Login</button>
-       
-        <p className="login-link">
-        <div>
-        New User? <Link to="/register">Sign Up</Link>
-        </div>
-        Forget Password <Link to="/reset">Reset Password</Link>
-        </p>
+        <button type="submit">Reset password</button>
+    
       </form>
     </div>
   );
 };
 
-export default Login;
+export default Reset;

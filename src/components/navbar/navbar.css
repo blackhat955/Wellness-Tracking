@@ -40,15 +40,17 @@
   flex-direction: row;
 }
 
-.navbar-links span {
+.navbar-links a {
   font-size: 1.6rem;
   margin: 0 50px;
-  cursor: pointer;
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit color from parent */
 }
 
-.navbar-links span:hover {
+.navbar-links a:hover {
   color: #f1356d;
   transition-duration: 1ms;
+  cursor: pointer;
 }
 
 .burger {

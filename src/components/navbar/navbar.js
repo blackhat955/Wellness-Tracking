@@ -1,5 +1,5 @@
-// Navbar.jsx
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './navbar.css';
 import Brand from '../../assets/images/brand.png';
 
@@ -17,9 +17,10 @@ const Navbar = () => {
       </div>
 
       <div className={`navbar-links ${menuOpen ? 'open' : ''}`}>
-        <span>Profile</span>
-        <span>Professional</span>
-        <span>Work Plans</span>
+        <Link to="/profile">Profile</Link>
+        <Link to="/professional">Professional</Link>
+        <Link to="/workplans">Work Plans</Link>
+        <Link to="/admin">Admin</Link>
       </div>
 
       <div className="burger" onClick={toggleMenu}>
