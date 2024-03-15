@@ -58,6 +58,24 @@ To run your Node.js project, follow these steps:
   ```bash
    npm audit fix
    ```
+## Work has been done so far:
+
+![P1](src/assets/images/admin.png)
+
+
+![P1](src/assets/images/login.png)
+
+
+
+![P1](src/assets/images/professional.png)
+
+![P1](src/assets/images/signup.png)
+
+![P1](src/assets/images/reset.png)
+
+
+![P1](src/assets/images/userprofile.png)
+
 
 
 
