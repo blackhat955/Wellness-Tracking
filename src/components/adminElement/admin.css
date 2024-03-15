@@ -24,7 +24,7 @@
   }
 
   .admin-page textarea{
-    width: 90%; /* Subtract padding and border width */
+    width: 100%; /* Subtract padding and border width */
     margin-bottom: 10px;
     padding: 10px;
     font-size: 16px;
