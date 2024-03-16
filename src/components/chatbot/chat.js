@@ -59,7 +59,7 @@ const config = {
 
 function Chat() {
     return (
-        <div style={{ maxWidth: '100%', overflowX: 'hidden', padding:'30px' }}>
+        <div style={{ maxWidth: '100%', overflowX: 'hidden' }}>
             <ThemeProvider theme={theme}>
                 <ChatBot
                     // This appears as the header
