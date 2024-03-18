@@ -1,38 +1,134 @@
 import React from 'react';
 import ChatBot from 'react-simple-chatbot';
+import { Link } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import brand from '../../assets/images/brand.png';
+// import brand from '../../assets/images/brand.png';
 import './chat.css';
 
 const steps = [
     {
-        id: '0',
-        message: 'Welcome to Wellness Bot!',
-        trigger: '1',
+        id: 'welcome',
+        message: 'Hello!',
+        trigger: 'q-firstname',
     },
     {
-        id: '1',
-        message: 'Please write your username',
-        trigger: '2',
+        id: 'q-firstname',
+        message: 'What is your name?',
+        trigger: 'firstname',
     },
     {
-        id: '2',
+        id: 'firstname',
         user: true,
-        trigger: '3',
+        validator: (value) => {
+          if (/^[A-Za-z]+$/.test(value)) {
+            return true
+          } else {
+            return 'Please input alphabet characters only.'
+          }
+        },
+        trigger: 'wellnessbot',
+    },
+    {
+        id: 'wellnessbot',
+        message:
+          'Hi {previousValue}, I am Wellness Bot! What can I do for you?',
+        trigger: 'qtype',
+    },
+    {
+        id: 'qtype',
+        options: [
+          { value: 1, label: 'Workout Plans', trigger: '3' },
+          { value: 2, label: 'Workout Professionals', trigger: '4' },
+          { value: 3, label: 'Contact us', trigger: '5' },
+          { value: 4, label: 'About us', trigger: '6' },
+        ],
     },
     {
         id: '3',
-        message: " Hi {previousValue}, how can I help you?",
-        trigger: 4,
+        component: (
+            <div>
+                Are you looking for workout plans to start off your fitness journey? Try checking out this section:
+                <Link to="/workplans"> Workout Plans</Link>
+            </div>
+        ),
+        asMessage: true,
+        trigger: 'q-submit',
     },
     {
         id: '4',
+        component: (
+            <div>
+                Confused how to begin your fitness journey? Get help from our certified Professionals:
+                <Link to="/professional"> Professionals</Link>
+            </div>
+        ),
+        asMessage: true,
+        trigger: 'q-submit',
+    },
+    {
+        id: '5',
+        component: (
+            <div>
+                Could not find what you want? Let us know so we can help you:
+                {/* <Link to="/professional"> Contact us</Link> */}
+            </div>
+        ),
+        asMessage: true,
+        trigger: 'q-submit',
+    },
+    {
+        id: '6',
+        component: (
+            <div>
+                Want to know more about us? Head on to this page for more information:
+                {/* <Link to="/professional"> About us</Link> */}
+            </div>
+        ),
+        asMessage: true,
+        trigger: 'q-submit',
+    },
+    {
+        id: 'q-submit',
+        message: 'Are you satisfied with the response!?',
+        trigger: 'submit',
+    },
+    {
+        id: 'submit',
         options: [
-            { value: 1, label: 'Yoga' },
-            { value: 2, label: 'Diet' },
-            { value: 3, label: 'Workout' },
-            { value: 4, label: 'Meditation' },
+          { value: 'y', label: 'Yes', trigger: 'end-message' },
+          { value: 'n', label: 'No', trigger: 'no-submit' },
         ],
+    },
+    {
+        id: 'q-end',
+        options: [
+          { value: 'y', label: 'Yes', trigger: 'qtype' },
+          { value: 'n', label: 'No', trigger: 'end-message' },
+        ],
+    },
+    {
+        id: 'no-submit',
+        component: (
+            <div>
+                <div>
+                    Could not find what you want? Let us know so we can help you:
+                    {/* <Link to="/professional"> Contact us</Link> */}
+                </div>
+                <div>
+                    Do you have any other questions !?
+                </div>
+                
+            </div>
+        ),
+        asMessage: true,
+        trigger: 'q-end',        
+    },
+    {
+        id: 'end-message',
+        component: (
+            <div>Good to see you!</div>
+        ),
+        asMessage: true,
         end: true,
     },
 ];
@@ -41,7 +137,7 @@ const steps = [
 const theme = {
     background: '#F4F4F4', // Light gray background
     headerBgColor: '#333333', // Green header background
-    headerFontSize: '20px',
+    headerFontSize: '15px',
     botBubbleColor: '#64B5F6', // Light blue bot bubble color
     headerFontColor: 'white', // White font color for header text
     botFontColor: 'black', // Black font color for bot messages
@@ -51,25 +147,22 @@ const theme = {
 
 // Set some properties of the bot
 const config = {
-    botAvatar: brand,
+    // width: '300px', // Set the width of the chatbot
+    // height: '400px', // Set the height of the chatbot
+    // botAvatar: brand,
     floating: true,
-    width: '400px', // Set the width of the chatbot
-    height: '600px', // Set the height of the chatbot
+    placeholder: 'Type your response...',
+    headerTitle: 'Wellness Bot',
 };
 
 function Chat() {
     return (
-        <div style={{ maxWidth: '100%', overflowX: 'hidden', padding:'30px' }}>
-            <ThemeProvider theme={theme}>
-                <ChatBot
-                    // This appears as the header
-                    // text for the chat bot
-                    headerTitle="Wellness Bot"
-                    steps={steps}
-                    {...config}
-                />
-            </ThemeProvider>
-        </div>
+        <ThemeProvider theme={theme}>
+            <ChatBot
+                steps={steps}
+                {...config}
+            />
+        </ThemeProvider>
     );
 }
 
