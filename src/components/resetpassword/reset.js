@@ -1,42 +1,35 @@
 // RegistrationPage.jsx
 import React, { useState } from 'react';
+import { useNavigate,useParams } from 'react-router-dom';
+import axios from 'axios'; // Import axios for API requests
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './reset.css';
 
-const Reset = () => {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    userName: '',
-    password: '',
-    userType: 'professional', // Default to professional
-  });
+const Reset = (props) => {
+  const {token} = useParams('')
+  const navigateTo = useNavigate();
 
+  const [formData, setFormData] = useState({
+    password: '',
+    confirmPassword: '',
+  });
+  const { password, confirmPassword } = formData;
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const [passwordStrength, setPasswordStrength] = useState('');
 
-  const handleChange = (e) => {
+  const handlePassword  = (e) => {
     const { name, value } = e.target;
+    console.log('name:', name);
+    console.log('value:', value);
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
-  };
-
-  const handlePassword = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-    checkPasswordStrength(value);
-  };
-
-  const confirmhandlePassword = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-    checkPasswordStrength(value);
+    if (name === 'password' || name === 'confirmPassword') {
+      checkPasswordStrength(value);
+    }
   };
   const checkPasswordStrength = (password) => {
     // Simple criteria for demonstration purposes
@@ -55,9 +48,30 @@ const Reset = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    // Add your registration logic here
+    if (password !== confirmPassword) {
+      toast.error("Passwords don't match");
+      setErrorMessage("Passwords don't match");
+      setSuccessMessage('');
+      return;
+    }
+
+    try {
+      const response = await axios.post('http://localhost:3001/auth/reset-password', { token, password });
+      if(response.status == 200) {
+        setSuccessMessage('Password updated successfully');
+        toast.success('Password updated successfully');
+        setTimeout(() => {
+          navigateTo('/');
+        }, 1500);
+        setErrorMessage('')
+      }
+    } catch (error) {
+      toast.error('Error resetting password.');
+      setSuccessMessage('');
+      setErrorMessage('Error resetting password.')
+    }
     console.log('Form submitted:', formData);
   };
 
@@ -65,8 +79,6 @@ const Reset = () => {
     <div className="login-container">
       <h1>Reset Password</h1>
       <form onSubmit={handleSubmit}>
-       
-    
 
         <input
           type="password"
@@ -80,12 +92,12 @@ const Reset = () => {
           required
         />
          <input
-          type=" Password"
-          id="password"
-          name="password"
+          type=" password"
+          id="confirmPassword"
+          name="confirmPassword"
           placeholder='confirm password'
-          value={formData.password}
-          onChange={confirmhandlePassword}
+          value={formData.confirmPassword}
+          onChange={handlePassword}
           pattern="^(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&*(),.?:{}|<>]).{8,}$"
           title="Password must be at least 8 characters long and contain at least one number, one letter, and one special character."
           required
@@ -100,6 +112,7 @@ const Reset = () => {
         <button type="submit">Reset password</button>
     
       </form>
+      <ToastContainer />
     </div>
   );
 };

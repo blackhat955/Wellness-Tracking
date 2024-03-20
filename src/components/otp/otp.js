@@ -1,9 +1,18 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate,useParams } from 'react-router-dom';
 import './otp.css';
 
 const OTP = () => {
+  const {email} = useParams('')
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState(''); 
+  const navigateTo = useNavigate();
+
+
   const [formData, setFormData] = useState({
     otp: '',
+
   });
 
   const handleChange = (e) => {
@@ -22,9 +31,37 @@ const OTP = () => {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add your OTP validation logic here
+  const handleSubmit = async(e) => {
+    try {
+      e.preventDefault();
+      let response = await axios.post('http://localhost:3001/auth/verify-code', { email, code: formData.otp });
+      if(response.status === 200){
+        setSuccessMessage('Logging in...')
+        setErrorMessage('');
+        setTimeout(() => {
+          // Fetch user type from local storage
+          const userDetails = JSON.parse(localStorage.getItem('userDetails'));
+
+  
+          // if(userDetails.type === 'admin') {
+          //   navigate('/dashboard/admin');
+          // }
+          // else if(userDetails.type === 'fitnesspro'){
+          //   navigate('/dashboard/admin');
+          // }
+          // else {
+            navigateTo('/profile');
+          // }
+  
+        }, 1500); // Wait 1.5 seconds to navigate so the user can read the message.
+      }
+      }
+     catch (err) {
+      setErrorMessage('Failed to verify OTP. Please try again.');
+      setSuccessMessage('')
+      console.log(err);
+      
+    }
     console.log('Form submitted:', formData);
   };
 

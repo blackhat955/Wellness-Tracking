@@ -1,16 +1,20 @@
 // RegistrationPage.jsx
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate} from 'react-router-dom';
+import axios from 'axios'; // Import axios for API requests
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './login.css';
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    userName: '',
-    password: '',
-    userType: 'professional', // Default to professional
+    email: '',
+    password: '' // Default to professional
   });
+
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const navigateTo = useNavigate();
 
   const [passwordStrength, setPasswordStrength] = useState('');
 
@@ -20,6 +24,9 @@ const Login = () => {
       ...prevData,
       [name]: value,
     }));
+    if (name === 'password') {
+      checkPasswordStrength(value);
+    }
   };
 
   const handlePassword = (e) => {
@@ -47,9 +54,31 @@ const Login = () => {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add your registration logic here
+  const handleSubmit = async(e) => {
+    console.log('Form submitted for the login one:', formData);
+    try {
+      e.preventDefault();
+      let response = await axios.post('http://localhost:3001/auth/login', formData);
+      if(response.status === 200){
+        console.log(response)
+        const userDetailsfetch= {
+          firstname: response.data.userDetails.firstname,
+          lastname: response.data.userDetails.lastname,
+          email: response.data.userDetails.email,
+          userType: response.data.userDetails.userType
+      };
+      
+      localStorage.setItem('userDetails', JSON.stringify(userDetailsfetch));
+        // setMessage('Logged in Succesfully');
+        navigateTo(`/otp/${formData.email}`);
+      }
+      }
+     catch (err) {
+      setErrorMessage('Invalid credentials');
+      console.log(err)
+      
+    }
+
     console.log('Form submitted:', formData);
   };
 
@@ -60,10 +89,10 @@ const Login = () => {
        
         <input
           type="text"
-          id="userName"
-          name="userName"
-          placeholder='User Name'
-          value={formData.userName}
+          id="email"
+          name="email"
+          placeholder='Email'
+          value={formData.email}
           onChange={handleChange}
           required
         />
@@ -83,7 +112,6 @@ const Login = () => {
         <select
           id="userType"
           name="userType"
-          value={formData.userType}
           onChange={handleChange}
         >
           <option value="professional">Professional</option>
@@ -101,7 +129,7 @@ const Login = () => {
         <div>
         New User? <Link to="/register">Sign Up</Link>
         </div>
-        Forget Password <Link to="/reset">Reset Password</Link>
+        Forget Password <Link to="/forget">Reset Password</Link>
         </p>
       </form>
     </div>

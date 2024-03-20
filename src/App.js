@@ -7,6 +7,8 @@ import LoginPage from './pages/loginPages/logPage';
 import UserProfile from './pages/useprofile/userprof'
 import Admin from './pages/adminPage/adminPage'
 import ResetPage from './pages/resetPage/reset'
+import OTP from './pages/optpage/otpPage';
+import Forgot from './pages/forgetPassword/forgotPage';
 
 
 
@@ -16,7 +18,9 @@ const App = () => {
       <Routes>
       <Route path="/" element={<LoginPage />} />
         <Route path="/profile" element={<UserProfile />} />
-        <Route path="/reset" element={<ResetPage />} />
+        <Route path="/forget" element={<Forgot />} />
+        <Route path="/reset-password/:token" element={<ResetPage />} exact/>
+        <Route path="/otp/:email" element={<OTP />} exact/>
         <Route path="/register" element={<RegistrationPage />} />
         <Route path="/professional" element={<LoginPage />} />
         <Route path="/workplans" element={<Findprofessional />} />
