@@ -1,12 +1,26 @@
 import React from 'react';
 import ApexCharts from 'react-apexcharts';
 
+// function to generate random numbers for attendance in each class 
+function generateNumbers(total, numNumbers) {
+    let numbers = [];
+
+    for (let i = 0; i < numNumbers - 1; i++) {
+        let number = Math.floor(Math.random() * (total - numbers.reduce((a, b) => a + b, 0) - (numNumbers - numbers.length - 1))) + 1;
+        numbers.push(number);
+    }
+
+    numbers.push(total - numbers.reduce((a, b) => a + b, 0));
+
+    return numbers;
+}
+
 const ClassesGraph = () => {
 
     
     const getChartOptions = () => {
         return {
-            series: [30, 25, 20, 25], // Adjust the values based on the attendance for each class
+            series: generateNumbers(100, 4), // Generate values based on the attendance for each class
             colors: ["#FF5733", "#FFC300", "#16A085", "#3498DB"], // Custom colors
             chart: {
                 height: 420,
