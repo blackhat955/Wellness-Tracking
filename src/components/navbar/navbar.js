@@ -1,13 +1,29 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState,useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './navbar.css';
 import Brand from '../../assets/images/brand.png';
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [userDetails, setUserDetails] = useState({});
+
+  useEffect(() => {
+    const userDetailsData = JSON.parse(localStorage.getItem('userDetails'));
+    if (userDetailsData) {
+      setUserDetails(userDetailsData);
+    }
+  }, []);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+  };
+
+  const handleLogout = () => {
+    // Clear user authentication data
+    localStorage.removeItem('userDetails');
+    // Redirect to login page
+    navigate('/');
   };
 
   return (
@@ -17,10 +33,16 @@ const Navbar = () => {
       </div>
 
       <div className={`navbar-links ${menuOpen ? 'open' : ''}`}>
-        <Link to="/profile">Profile</Link>
-        <Link to="/professional">Professional</Link>
-        <Link to="/workplans">Work Plans</Link>
-        <Link to="/admin">Admin</Link>
+
+      {userDetails.firstname && (
+          <>
+            <Link to={`/profile/${userDetails.firstname}`}>Profile</Link>
+            <Link to={`/professional/${userDetails.firstname}`}>Professional</Link>
+            <Link to={`/workplans/${userDetails.firstname}`}>WorkPlans</Link>
+            <Link to={`/admin/${userDetails.firstname}`}>Admin</Link>
+          </>
+        )}
+        <button className="logout" onClick={handleLogout}>Logout</button>
       </div>
 
       <div className="burger" onClick={toggleMenu}>

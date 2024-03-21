@@ -41,7 +41,7 @@
 }
 
 .navbar-links a {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   margin: 0 50px;
   text-decoration: none; /* Remove underline */
   color: inherit; /* Inherit color from parent */
@@ -85,4 +85,17 @@
   .burger {
     display: flex;
   }
+}
+
+.logout {
+  background-color: #f1356d !important;
+  color: white;
+  margin-right: 20px;
+  cursor: pointer;
+}
+.logout:hover {
+  background-color: #e60b4c !important;
+  color: white;
+  margin-right: 20px;
+  cursor: pointer;
 }

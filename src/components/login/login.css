@@ -78,3 +78,15 @@ button:hover {
   color: #007bff;
   text-decoration: none;
 }
+
+.Toastify__close-button--light{
+ background-color: white !important;
+ color: black !important;
+ width: 10px !important;
+height: 30px !important;
+margin-bottom: 20px !important;
+}
+.Toastify__close-button--light:hover{
+  background-color: white !important;
+  color: black !important;
+ }

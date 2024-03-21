@@ -60,7 +60,10 @@ const Login = () => {
       e.preventDefault();
       let response = await axios.post('http://localhost:3001/auth/login', formData);
       if(response.status === 200){
-        console.log(response)
+        // setSuccessMessage('Logging in...');
+        // console.log('response this is working:', response);
+        
+        toast.success('Logged in Succesfully');
         const userDetailsfetch= {
           firstname: response.data.userDetails.firstname,
           lastname: response.data.userDetails.lastname,
@@ -74,6 +77,7 @@ const Login = () => {
       }
       }
      catch (err) {
+      toast.error('Invalid credentials to logIn');
       setErrorMessage('Invalid credentials');
       console.log(err)
       
@@ -132,6 +136,7 @@ const Login = () => {
         Forget Password <Link to="/forget">Reset Password</Link>
         </p>
       </form>
+      <ToastContainer/>
     </div>
   );
 };

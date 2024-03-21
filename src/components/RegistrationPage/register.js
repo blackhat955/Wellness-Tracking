@@ -53,16 +53,7 @@ const RegistrationPage = () => {
 
       if (response.status === 200) {
         setSuccessMessage('Registered successfully');
-        toast.success('🦄 Wow so easy!', {
-          position: "top-right",
-          autoClose: true,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-          });
+        toast.success('Register Successfully...');
         setErrorMessage('');
         // Redirect to the login page after 3 seconds
         setTimeout(() => {
@@ -70,17 +61,7 @@ const RegistrationPage = () => {
         }, 3000);
       }
     } catch (err) {
-      toast.error('🦄 User with this email already exists!', {
-        position: "top-right",
-        autoClose: true,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-       
-        });
+      toast.error('User with this email already exists!');
       console.log(err);
       setErrorMessage('User with this email already exists');
       setSuccessMessage('');

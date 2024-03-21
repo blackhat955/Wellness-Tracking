@@ -50,7 +50,7 @@ const OTP = () => {
           //   navigate('/dashboard/admin');
           // }
           // else {
-            navigateTo('/profile');
+            navigateTo(`/profile/${userDetails.firstname}`);
           // }
   
         }, 1500); // Wait 1.5 seconds to navigate so the user can read the message.
