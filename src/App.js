@@ -9,6 +9,7 @@ import Admin from './pages/adminPage/adminPage'
 import ResetPage from './pages/resetPage/reset'
 import OTP from './pages/optpage/otpPage';
 import Forgot from './pages/forgetPassword/forgotPage';
+import WorkoutPlans from './pages/workoutPlans';
 
 
 
@@ -32,8 +33,8 @@ const App = () => {
         <Route path="/reset-password/:token" element={<ResetPage />} exact />
         <Route path="/otp/:email" element={<OTP />} exact />
         <Route path="/register" element={<RegistrationPage />} />
-        <Route path="/professional/:name" element={userDetails ? <LoginPage /> : <Navigate to="/" replace />} />
-        <Route path="/workplans/:name" element={userDetails ? <Findprofessional /> : <Navigate to="/" replace />} />
+        <Route path="/professional/:name" element={userDetails ? <Findprofessional /> : <Navigate to="/" replace />} />
+        <Route path="/workplans/:name" element={userDetails ? <WorkoutPlans /> : <Navigate to="/" replace />} />
         <Route path="/admin/:name" element={userDetails ? <Admin /> : <Navigate to="/" replace />} />
         {/* Add more routes as needed */}
       </Routes>

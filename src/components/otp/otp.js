@@ -50,6 +50,7 @@ const OTP = () => {
           //   navigate('/dashboard/admin');
           // }
           // else {
+            console.log('response this is working:', response);
             navigateTo(`/profile/${userDetails.firstname}`);
           // }
   
