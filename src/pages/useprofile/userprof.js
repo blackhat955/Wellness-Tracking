@@ -3,12 +3,14 @@ import ClassesGraph from '../../components/classgraph/classgraph';
 import DoughNut from '../../components/donut/donut';
 import LineBar from '../../components/Linebar/linebar';
 import Chat from '../../components/chatbot/chat';
+import session from '../../pages/session';
 import './userprof.css';
 
 function userProfile() {
+  session();
   return (
     <div >
-      <Navbar />  
+      {/* <Navbar />   */}
       <div className='user'>
       <div className="grid">
         <ClassesGraph className="classes-graph" />

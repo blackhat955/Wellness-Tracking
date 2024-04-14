@@ -64,14 +64,6 @@ const Login = () => {
         // console.log('response this is working:', response);
         
         toast.success('Logged in Succesfully');
-        const userDetailsfetch= {
-          firstname: response.data.userDetails.firstname,
-          lastname: response.data.userDetails.lastname,
-          email: response.data.userDetails.email,
-          userType: response.data.userDetails.userType
-      };
-      
-      localStorage.setItem('userDetails', JSON.stringify(userDetailsfetch));
         // setMessage('Logged in Succesfully');
         navigateTo(`/otp/${formData.email}`);
       }

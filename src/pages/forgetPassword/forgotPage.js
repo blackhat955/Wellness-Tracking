@@ -7,7 +7,7 @@ function ForgotPassword() {
 
   return (
     <div className="App">
-      <Navbar/>
+      {/* <Navbar/> */}
       <div className='log'>
       <Forgot/>
       </div>

@@ -22,7 +22,7 @@ function RegisterPages() {
         <Spinner />
       ) : (
         <>
-          <Navbar />
+          {/* <Navbar /> */}
           <div className='res'>
           <Register />
           </div>

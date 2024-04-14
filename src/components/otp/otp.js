@@ -36,11 +36,26 @@ const OTP = () => {
       e.preventDefault();
       let response = await axios.post('http://localhost:3001/auth/verify-code', { email, code: formData.otp });
       if(response.status === 200){
+        console.log('response:', response);
         setSuccessMessage('Logging in...')
         setErrorMessage('');
         setTimeout(() => {
           // Fetch user type from local storage
-          const userDetails = JSON.parse(localStorage.getItem('userDetails'));
+    
+          // const update={
+          //   ...userDetails,
+          //   verification:true
+          const userDetailsfetch= {
+            firstname: response.data.user.firstname,
+            lastname: response.data.user.lastname,
+            email: response.data.user.email,
+            userType: response.data.user.userType,
+        };
+        
+        localStorage.setItem('userDetails', JSON.stringify(userDetailsfetch));
+          
+          // }
+        
 
   
           // if(userDetails.type === 'admin') {
@@ -51,7 +66,16 @@ const OTP = () => {
           // }
           // else {
             console.log('response this is working:', response);
-            navigateTo(`/profile/${userDetails.firstname}`);
+
+            if(response.data.user &&response.data.user.firstname){
+              navigateTo(`/profile/${response.data.user.firstname}`);
+            }
+            else{
+              console.log('this is not working fine');
+              localStorage.removeItem('userDetails');
+              navigateTo('/');
+            }
+            
           // }
   
         }, 1500); // Wait 1.5 seconds to navigate so the user can read the message.

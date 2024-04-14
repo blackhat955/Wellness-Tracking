@@ -7,7 +7,7 @@ function LoginPage() {
 
   return (
     <div className="App">
-      <Navbar/>
+      {/* <Navbar/> */}
       <div className='log'>
       <Login/>
       </div>
