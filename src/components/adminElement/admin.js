@@ -46,6 +46,8 @@ const AdminPage = () => {
           const data=await creatdata();
 
           const response = await axios.post('http://localhost:3001/video/uploadVideo', data);
+        
+          toast.success('Video uploaded successfully!');
           console.log('Upload response:', response.data);
     
           // If you need to update UI or show a message after successful upload, you can do it here
