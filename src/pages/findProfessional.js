@@ -1,5 +1,4 @@
 // import './App.css';
-import Navbar from '../components/navbar/navbar'; 
 import Search from '../components/searchnav/searchnav';
 import UserContainer from '../components/cardPopulate/populate';
 import session from './session';

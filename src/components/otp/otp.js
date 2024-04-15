@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate,useParams } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './otp.css';
 
 const OTP = () => {
@@ -38,6 +40,7 @@ const OTP = () => {
       if(response.status === 200){
         console.log('response:', response);
         setSuccessMessage('Logging in...')
+        toast.success('OTP verified successfully!');
         setErrorMessage('');
         setTimeout(() => {
           // Fetch user type from local storage
@@ -71,18 +74,18 @@ const OTP = () => {
               navigateTo(`/profile/${response.data.user.firstname}`);
             }
             else{
-              console.log('this is not working fine');
               localStorage.removeItem('userDetails');
               navigateTo('/');
             }
             
           // }
   
-        }, 1500); // Wait 1.5 seconds to navigate so the user can read the message.
+        }, 2000); // Wait 2 seconds to navigate so the user can read the message.
       }
       }
      catch (err) {
       setErrorMessage('Failed to verify OTP. Please try again.');
+      toast.error('Failed to verify OTP. Please try again.');
       setSuccessMessage('')
       console.log(err);
       
@@ -106,6 +109,7 @@ const OTP = () => {
         />
         <button type="submit">Validate</button>
       </form>
+      <ToastContainer />
     </div>
   );
 };
