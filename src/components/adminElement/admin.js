@@ -45,7 +45,7 @@ const AdminPage = () => {
     try {
           const data=await creatdata();
 
-          const response = await axios.post('http://localhost:3001/video/uploadVideo', data);
+          const response = await axios.post('https://wellnessbackend-latest.onrender.com/video/uploadVideo', data);
         
           toast.success('Video uploaded successfully!');
           console.log('Upload response:', response.data);

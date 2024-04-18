@@ -38,13 +38,12 @@ const VideoCard = ({ videoUrl,title, instructor, speciality, type, date,experien
 
 const VideoGallery = () => {
     const [videos, setVideos] = useState([]);
-    // const apiUrl = " 'http://localhost:3001/video/getVideos"; // Update with your API URL
 
     useEffect(() => {
         // Fetch video URLs, titles, and descriptions from your backend
         const fetchVideos = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/video/getVideos');
+                const response = await axios.get('https://wellnessbackend-latest.onrender.com/video/getVideos');
                 console.log('Response:', response.data);
                 setVideos(response.data.videos);
               } catch (error) {

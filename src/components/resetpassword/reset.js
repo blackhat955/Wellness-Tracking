@@ -58,7 +58,7 @@ const Reset = (props) => {
     }
 
     try {
-      const response = await axios.post('http://localhost:3001/auth/reset-password', { token, password });
+      const response = await axios.post('https://wellnessbackend-latest.onrender.com/auth/reset-password', { token, password });
       if(response.status == 200) {
         setSuccessMessage('Password updated successfully');
         toast.success('Password updated successfully');

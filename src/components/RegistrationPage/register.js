@@ -49,7 +49,7 @@ const RegistrationPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3001/auth/register', formData);
+      const response = await axios.post('https://wellnessbackend-latest.onrender.com/auth/register', formData);
 
       if (response.status === 200) {
         setSuccessMessage('Registered successfully');

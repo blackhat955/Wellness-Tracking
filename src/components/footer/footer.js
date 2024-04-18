@@ -20,7 +20,7 @@ const Footer = () => {
     }
 
     // Send POST request to /subscribe endpoint with the email data using Axios
-    axios.post('http://localhost:3001/auth//subscribe', { email })
+    axios.post('https://wellnessbackend-latest.onrender.com/auth//subscribe', { email })
       .then((response) => {
         setEmail(''); // Clear email field on success
         toast.success('Subscribed successfully!'); // Show success message using toast

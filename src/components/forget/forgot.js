@@ -26,7 +26,7 @@ const Forgot = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3001/auth/forget-password', { email });
+      const response = await axios.post('https://wellnessbackend-latest.onrender.com/auth/forget-password', { email });
       if (response.status === 200) {
         toast.success('Reset link sent to your email!');
         setTimeout(() => {

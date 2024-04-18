@@ -36,7 +36,7 @@ const OTP = () => {
   const handleSubmit = async(e) => {
     try {
       e.preventDefault();
-      let response = await axios.post('http://localhost:3001/auth/verify-code', { email, code: formData.otp });
+      let response = await axios.post('https://wellnessbackend-latest.onrender.com/auth/verify-code', { email, code: formData.otp });
       if(response.status === 200){
         console.log('response:', response);
         setSuccessMessage('Logging in...')

@@ -7,6 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import './login.css';
 
 const Login = () => {
+
+
   const [formData, setFormData] = useState({
     email: '',
     password: '' // Default to professional
@@ -58,7 +60,7 @@ const Login = () => {
     console.log('Form submitted for the login one:', formData);
     try {
       e.preventDefault();
-      let response = await axios.post('http://localhost:3001/auth/login', formData);
+      let response = await axios.post('https://wellnessbackend-latest.onrender.com/auth/login', formData);
       if(response.status === 200){
         // setSuccessMessage('Logging in...');
         // console.log('response this is working:', response);

@@ -10,7 +10,7 @@ const WorkContainer = () => {
   }, []); // Empty dependency array to run the effect once
 
   const fetchVideos = () => {
-    axios.get('http://localhost:3001/auth/videos')
+    axios.get('https://wellnessbackend-latest.onrender.com/auth/videos')
       .then(response => {
         if (response.data && response.data.videos) {
           setVideos(response.data.videos);

@@ -1,9 +1,26 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import ChatBot from 'react-simple-chatbot';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 // import brand from '../../assets/images/brand.png';
 import './chat.css';
+
+
+
+function Chat() {
+    const navigate = useNavigate();
+
+useEffect(() => {
+  const userDetails = localStorage.getItem('userDetails');
+  if (!userDetails || !JSON.parse(userDetails).firstname) {
+    navigate('/'); // Redirect to login page
+  }
+}, [navigate]);
+
+
+const value = JSON.parse(localStorage.getItem('userDetails'));
+const user = value.firstname;
+
 
 const steps = [
     {
@@ -59,7 +76,8 @@ const steps = [
         component: (
             <div>
                 Confused how to begin your fitness journey? Get help from our certified Professionals:
-                <Link to="/professional"> Professionals</Link>
+                <Link to={`https://wellnessbackend-latest.onrender.com/professional/${user}`}>Professionals</Link>
+
             </div>
         ),
         asMessage: true,
@@ -155,7 +173,6 @@ const config = {
     headerTitle: 'Wellness Bot',
 };
 
-function Chat() {
     return (
         <ThemeProvider theme={theme}>
             <ChatBot
