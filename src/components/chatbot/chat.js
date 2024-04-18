@@ -65,7 +65,7 @@ const steps = [
         component: (
             <div>
                 Are you looking for workout plans to start off your fitness journey? Try checking out this section:
-                <Link to="/workplans"> Workout Plans</Link>
+                <Link to={`https://wellnessfinal.vercel.app/workplans/${user}`}>Professionals</Link>
             </div>
         ),
         asMessage: true,
@@ -76,7 +76,7 @@ const steps = [
         component: (
             <div>
                 Confused how to begin your fitness journey? Get help from our certified Professionals:
-                <Link to={`https://wellnessbackend-latest.onrender.com/professional/${user}`}>Professionals</Link>
+                <Link to={`https://wellnessfinal.vercel.app/professional/${user}`}>Professionals</Link>
 
             </div>
         ),
