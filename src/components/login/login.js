@@ -1,10 +1,10 @@
-// RegistrationPage.jsx
 import React, { useState } from 'react';
 import { Link , useNavigate} from 'react-router-dom';
 import axios from 'axios'; // Import axios for API requests
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './login.css';
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 
 const Login = () => {
 
@@ -55,6 +55,52 @@ const Login = () => {
       setPasswordStrength('Weak');
     }
   };
+
+  const responseGoogle = async (response) => {
+    console.log("sUCCESS")
+    console.log(response.credential)
+    // console.log(response.tokenId)
+    try {
+        const res = await fetch('https://wellnessbackend-latest.onrender.com/oauth/google', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ access_token: response.credential }),
+        });
+
+        if (!res.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await res.json();
+
+        console.log('Login successful:', data);
+        console.log("ok",data.userDetails.firstname)
+      //   const userDetailsfetch= {
+      //     firstname: response.data.userDetails.firstname,
+      //     lastname: response.data.userDetails.lastname,
+      //     email: response.data.userDetails.email,
+      //     userType: response.data.userDetails.userType
+      // };
+            setTimeout(() => {
+              const userDetailsfetch= {
+                firstname: data.userDetails.firstname,
+                lastname: data.userDetails.lastname,
+                email: data.userDetails.email,
+                userType: data.userDetails.userType
+            };
+            
+            localStorage.setItem('userDetails', JSON.stringify(userDetailsfetch));
+                navigateTo(`/profile/${data.userDetails.firstname}`);
+            }, 2000); 
+          
+  // Log the response from the backend
+
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
 
   const handleSubmit = async(e) => {
     console.log('Form submitted for the login one:', formData);
@@ -122,6 +168,14 @@ const Login = () => {
         )}
 
         <button type="submit">Login</button>
+        <GoogleOAuthProvider clientId="564265705395-ijb65ipug7u0fsfeg9htsirit23ppqob.apps.googleusercontent.com">
+          <GoogleLogin
+              onSuccess={responseGoogle}
+                onError={() => {
+                  console.log('Login Failed');
+                }}/>  
+        </GoogleOAuthProvider>
+
        
         <p className="login-link">
         <div>
