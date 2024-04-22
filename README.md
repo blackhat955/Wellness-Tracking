@@ -76,6 +76,8 @@ To run your Node.js project, follow these steps:
 
 ![P1](src/assets/images/userprofile.png)
 
+![P1](src/assets/images/workplans.png)
+
 
 
 
